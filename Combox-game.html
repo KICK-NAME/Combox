@@ -1,0 +1,524 @@
+<html>
+ <head>
+  <title>Combox.Game</title>
+   <meta name="author" content="Andi Setiawan"/>
+   <meta name="description" content="Ingat Jangan di ubah2 texs nya"/>
+   <meta name="keywords" content="html,css"/>
+   <meta http-equiv="refresh" content="30"/>
+   <meta http-equiv="robots" content="noindex,nofollow"/>
+   <meta name="infromation" content="Buka hasil harus menggunakan Browsers yaa.."/>
+  <style>
+   #container {
+  
+  
+  height:760px;
+  width:777.77px;
+  background-color:black;
+  position:absolute;
+  border:5px solid red;
+  
+
+}
+
+#box {
+  
+  height:10%;
+  width:10%;
+  background-color:yellow;
+  position:absolute;
+  z-index:8;
+}
+
+#foods{
+  
+  height:20px;
+  width:20px;
+  background-color:#ffe716;
+  position:absolute;
+  margin-top:10px;
+  margin-left:13.325px;
+  
+  
+  
+}
+
+
+#button1 {
+
+  height:70px;
+  width:70px;
+  background-color:black;
+  margin-top:870px;
+  margin-left:403.42px;
+  position:absolute;
+  font-size:20px;      
+  color:red;
+  font-weight:bolder;
+}
+
+#button2 {
+
+  height:70px;
+  width:70px;
+  background-color:black;
+  margin-top:870px;
+  margin-left:263.42px;
+  position:absolute;  
+  font-size:20px;  
+  color:red;
+  font-weight:bolder;
+}
+
+#button3 {
+  
+  height:70px;
+  width:70px;
+  background-color:black;
+  margin-top:800px;
+  margin-left:333.42px;
+  position:absolute;  
+  font-size:20px;  
+  color:red;
+  font-weight:bolder;
+}
+
+#button4 {
+  
+  height:70px;
+  width:70px;
+  background-color:black;
+  margin-top:940px;
+  margin-left:333.42px;
+  position:absolute;  
+  font-size:20px;  
+  color:red;
+  font-weight:bolder;
+}
+ 
+#score {
+  
+  margin-top:850px;
+  position:absolute;
+  color:red;
+  font-weight:bolder;
+  font-family:courier;
+  text-transform:capitalize;
+  font-weight:bolder;
+  font-size:30px;
+}
+ 
+ 
+#block{
+  position:absolute;
+  z-index:6;
+  margin-top:853;
+  margin-left:161;
+  margin-top:none;
+  font-size:30px;
+  font-family:courier;
+  color:black;
+  font-weight:bolder;
+}
+  </style>
+ </head> 
+ <body> 
+  <div id="container"> 
+   <div id="box"> 
+    </div> 
+     </div> 
+      <div id="foods"> 
+       </div> 
+      <div> 
+     <button id="button1" onclick="Right()"> A </button> 
+    <button id="button2" onclick="Left()"> B </button> 
+   <button id="button3" onclick="Top()"> C </button> 
+  <button id="button4" onclick="Down()"> D </button> 
+ </div> 
+<div id="score">||SEKOR👉
+  </div> 
+   <div id="block">0 
+    </div> 
+   <script>
+    var px=0;
+var py=0;
+
+var food1=Math.ceil(Math.random()*60)+50;
+var food2=Math.ceil(Math.random()*60)+50;
+
+var minus1=0;
+var minus2=0;
+
+
+var v,x,y,z ;
+var score=0;
+
+var box=document.getElementById('box');
+var food=document.getElementById("foods");
+
+
+food.style.left=food1+"px";
+food.style.top=food2+"px";
+
+var start=false;
+
+
+function repeat(){
+
+
+food1=Math.ceil(Math.random()*1000)+100;
+food2= Math.ceil(Math.random()*1000)+100;
+
+
+
+if(food1>=700 || food2>=700){
+  
+  repeat();
+}
+
+
+
+food.style.left=food1+"px";
+food.style.top=food2+"px";
+
+
+
+}
+
+if(start==true){
+  
+repeat();
+start=false;
+
+}
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+function Right () {
+  
+  box.style.width="77.77px";
+  box.style.height="60.8px";
+  
+  x=true;
+  v=false;
+  y=false;
+  z=false;
+
+  if(px>=700) {
+    
+    return;
+  }
+
+  var c = setInterval(move1,5);
+  
+  
+  function move1 () {
+    
+    
+  
+     if( v==true || y==true || z==true  ){
+       
+       clearInterval(c);
+       return;
+     }
+    
+  if(px>=700) {
+    
+      clearInterval(c);
+      return;
+      
+     }
+
+  px+=1;
+  
+  box.style.left=px+"px";
+  
+
+  
+  
+
+        
+  if(px>food1){
+    minus1=px-food1;
+  
+  }
+  if(food1>px){
+    minus1=food1-px;
+    
+  }
+    if(food2>py){
+    minus2=food2-py;
+    
+  }
+    
+    if(food2<py){
+      minus2=py-food2;
+    
+    
+    }
+  
+    
+    
+  if (     minus1<=67.77 && minus2<=50.8 ){
+     ++score;
+    var Tag=document.getElementById('block');
+    Tag.innerHTML=score;
+      
+    start=true;
+    repeat();
+  
+  }
+   
+   }
+  
+  
+  return;
+}
+
+
+function Left () {
+      
+     box.style.width="77.77px";
+  box.style.height="60.8px";
+     
+      
+  x=false;
+  v=true;
+  y=false;
+  z=false;
+    
+    
+  if(px<=0) {
+    
+    return;
+  }
+
+  var t= setInterval(move2,5);
+  
+  
+  function move2(){
+    
+    
+  
+     if(  x==true || y==true || z==true ){
+       
+       clearInterval(t);
+       return;
+     }
+    
+  if(px<=0) {
+    
+      clearInterval(t);
+      return;
+      
+     }
+
+  px-=1;
+  
+  box.style.left=px+"px";
+  
+  
+    
+  
+  
+    if(px>food1){
+    minus1=px-food1;
+  
+  }
+  if(food1>px){
+    minus1=food1-px;
+    
+  }
+    if(food2>py){
+    minus2=food2-py;
+    
+  }
+    
+    if(food2<py){
+      minus2=py-food2;
+    
+    }
+    
+  
+  
+    if (minus1<=15 && minus2<=50.8){
+     ++score;
+    var Tag=document.getElementById('block');
+    Tag.innerHTML=score;
+      
+    start=true;
+    repeat();
+  }
+  
+  }
+  return;
+
+}
+
+
+
+
+function Top () 
+{
+  
+
+  
+  x=false;
+  v=false;
+  y=true;
+  z=false;
+  
+  
+  if(py<=0) {
+    
+    return;
+  }
+
+  var b = setInterval(move,5);
+  
+  
+  function move(){
+    
+    
+  if(x==true || v==true || z==true){
+    
+    clearInterval(b);
+    return;
+  }
+   
+    
+  if(py<=0) {
+    
+      clearInterval(b);
+      return;
+      
+     }
+
+  py-=1;
+  
+  box.style.top=py+"px";
+  
+    if(px>food1){
+    minus1=px-food1;
+  
+  }
+  if(food1>px){
+    minus1=food1-px;
+    
+  }
+    if(food2>py){
+    minus2=food2-py;
+    
+  }
+    
+    if(food2<py){
+      minus2=py-food2;
+    
+    }
+    
+  
+  
+    if (  minus1<=40.55 && minus2<=50.2){
+     ++score;
+    var Tag=document.getElementById('block');
+    Tag.innerHTML=score;
+      
+    start=true;
+    repeat();
+  }
+  
+  
+  
+    
+  }
+  
+  return;
+  
+ }
+ 
+
+
+
+function Down (){
+  
+
+  
+  x=false;
+  v=false;
+  y=false;
+  z=true;
+  
+  
+  if(py>=700) {
+    
+    return;
+  }
+
+  var k = setInterval(move,5);
+  
+  
+  function move(){
+    
+    
+  if(x==true || v==true || y==true){
+    
+    clearInterval(k);
+    return;
+  }
+   
+    
+  if(py>=700) {
+    
+      clearInterval(k);
+      return;
+      
+     }
+
+  py+=1;
+  
+  box.style.top=py+"px";
+  
+    if(px>food1){
+    minus1=px-food1;
+  
+  }
+  if(food1>px){
+    minus1=food1-px;
+    
+  }
+    if(food2>py){
+    minus2=food2-py;
+    
+  }
+    
+    if(food2<py){
+      minus2=py-food2;
+    
+    }
+    
+  
+  
+    if (  minus1<=40.55 && minus2<=50.2){
+     ++score;
+    var Tag=document.getElementById('block');
+    Tag.innerHTML=score;
+      
+    start=true;
+    repeat();
+  }
+  
+  
+  }
+     
+  return;
+  }
+   </script>
+ </body>
+</html>
